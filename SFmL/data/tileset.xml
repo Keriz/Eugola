@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tileset path="img/tileset.png">
+	<path name="img/tileset.png"/>
+	<tiles>
+		<tile name="grass" id="0" type="1" xoffset="0" yoffset="0" frames="9" />
+	</tiles>
+</Tileset>
