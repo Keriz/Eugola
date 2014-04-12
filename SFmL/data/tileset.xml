@@ -3,5 +3,6 @@
 	<path name="img/tileset.png"/>
 	<tiles>
 		<tile name="grass" id="0" type="1" xoffset="0" yoffset="0" frames="9" />
+    <tile name="sand" id="1" type="1" xoffset="9" yoffset="0" frames="9" />
 	</tiles>
 </Tileset>

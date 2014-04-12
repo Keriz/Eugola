@@ -27,9 +27,8 @@ void GameplayState::initialize(sf::RenderWindow* windowContext, TextureManager* 
 
 void GameplayState::load_content()
 {
-	coucou = m_TextureManager->registerTexture("test", "img/PreviewSmall_1.png");
-
-	coudcou.setTexture(coucou);
+	//coucou = m_TextureManager->registerTexture("test", "img/PreviewSmall_1.png");
+	//coudcou.setTexture(coucou);
 
 	m_World.loadContent(m_TextureManager, m_EHandler);
 }
@@ -56,7 +55,7 @@ void GameplayState::update(GameTime const& gameTime)
 			}
 		}
 
-	for(int i = 0; i < 1000000; ++i)
+	for(int i = 0; i < 10000000; ++i)
 	{
 
 	}

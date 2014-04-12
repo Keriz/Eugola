@@ -33,16 +33,16 @@ Tile& Tile::operator=(const Tile& t)
 
 void Tile::defineTexture(sf::Image image, Exception* eHandler)
 {
-	//sf::Texture texture;
-	//texture.create(16,16);
-	//for (int i = 0; i < m_Frames; i++)
-	//{
-	//	if(!texture.loadFromImage(image, sf::IntRect(m_xTextureOffset * TILE_SIZE + i * TILE_SIZE, m_yTextureOffset * TILE_SIZE,TILE_SIZE,TILE_SIZE)))
-	//	{
-	//		eHandler->write(2, const_cast<char*>(std::string("tileset.xml file, tile " + m_Name + ", couldn't create texture for frame " + std::to_string(i) + ".").c_str()));
-	//		return;
-	//	}
-	//}
+	sf::Texture texture;
+	texture.create(16,16);
+	for (int i = 0; i < m_Frames; i++)
+	{
+		if(!texture.loadFromImage(image, sf::IntRect(m_xTextureOffset * TILE_SIZE + i * TILE_SIZE, m_yTextureOffset * TILE_SIZE,TILE_SIZE,TILE_SIZE)))
+		{
+			eHandler->write(2, const_cast<char*>(std::string("tileset.xml file, tile " + m_Name + ", couldn't create texture for frame " + std::to_string(i) + ".").c_str()));
+			return;
+		}
+	}
 	m_TexturesOffset.x = m_xTextureOffset * TILE_SIZE;
 	m_TexturesOffset.y = m_yTextureOffset * TILE_SIZE;
 	m_Orientation = 0;
@@ -117,6 +117,5 @@ int Tile::getOrientation()
 
 sf::Vector2f Tile::getTexturesOffset()
 {
-//	return m_TexturesOffset;
-	return sf::Vector2f(0,0);
+	return m_TexturesOffset;
 }

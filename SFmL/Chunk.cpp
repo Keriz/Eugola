@@ -16,25 +16,27 @@ int* Chunk::load(sf::Vector2i chunkToLoad, Exception* eHandler, TileManager* til
 	b.open(std::string(std::to_string(chunkToLoad.x) + "." + std::to_string(chunkToLoad.y) + ".ec"),"r");
 	for (int i = 0; i < NUMBER_TILES_IN_A_CHUNK; ++i)
 	{
-		m_Tiles[i] = tileManager->getTile(0);
+
+		if ((i % 2) == 0) //pour tester seulement, faut rajouter un peu d'aléatoire
+			m_Tiles[i] = tileManager->getTile(0);
+		else
+			m_Tiles[i] = tileManager->getTile(1);
 	}
 	
 	b.close();
 	createVertexArrayFromTiles();
 
-	int arrayToFill[NUMBER_TILES_IN_A_CHUNK] = {};
-
 	for (int i = 0; i < NUMBER_TILES_IN_A_CHUNK; ++i)
 	{
-		arrayToFill[i] = m_Tiles[i].getID();
+		m_TilesID[i] = m_Tiles[i].getID();
 	}
 
-	return arrayToFill;
+	return m_TilesID;
 }
 
 void Chunk::giveGoodSurroundingTiles(int* tileIDArray,int chunkX, int chunkY)
 {
-	//(i * 1900) + (j * 1900) + (i * j * 1900)
+
 	for (int i = 0; i < NUMBER_TILES_IN_A_CHUNK; i++)
 	{
 		int top, left, bot, right;
@@ -89,11 +91,9 @@ void Chunk::createVertexArrayFromTiles()
             // on récupère un pointeur vers le quad à définir dans le tableau de vertex
             sf::Vertex* quad = &m_Vertices[(i + j * NUMBER_TILES_X) * 4];
 
-			sf::Vector2f textureOffset = m_Tiles[i * NUMBER_TILES_X + j * NUMBER_TILES_Y].getTexturesOffset();
+			sf::Vector2f textureOffset = (m_Tiles[i + j * NUMBER_TILES_X]).getTexturesOffset();
 
 			int orientation = m_Tiles[i + j * NUMBER_TILES_X].getOrientation();
-
-			std::cout << (i + j * NUMBER_TILES_X) << std::endl;
 
             // on définit ses quatre coins
             quad[0].position = sf::Vector2f(i * TILE_SIZE, j * TILE_SIZE);
@@ -105,6 +105,6 @@ void Chunk::createVertexArrayFromTiles()
 			quad[0].texCoords = sf::Vector2f(textureOffset.x + orientation * TILE_SIZE,textureOffset.y);
             quad[1].texCoords = sf::Vector2f(textureOffset.x + orientation * TILE_SIZE + TILE_SIZE,textureOffset.y);
             quad[2].texCoords = sf::Vector2f(textureOffset.x + orientation * TILE_SIZE + TILE_SIZE,textureOffset.y + TILE_SIZE);
-            quad[3].texCoords = sf::Vector2f(textureOffset.x + orientation * TILE_SIZE,textureOffset.y + TILE_SIZE);
+			quad[3].texCoords = sf::Vector2f(textureOffset.x + orientation * TILE_SIZE, textureOffset.y + TILE_SIZE);
         }
 }
