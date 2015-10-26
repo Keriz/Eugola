@@ -19,7 +19,7 @@ int* Chunk::load(sf::Vector2i chunkToLoad, Exception* eHandler, TileManager* til
 	srand(std::time(0)); //to remove
 	for (int i = 0; i < NUMBER_TILES_IN_A_CHUNK; ++i)
 	{
-		if (rand() > 15500) //pour tester seulement, faut rajouter un peu d'aléatoire
+		if (rand() > 15550) //pour tester seulement, faut rajouter un peu d'aléatoire
 			m_Tiles[i] = tileManager->getTile(0);
 		else
 			m_Tiles[i] = tileManager->getTile(1);
