@@ -55,8 +55,5 @@ void GameplayState::update(GameTime const& gameTime)
 			}
 		}
 
-	for(int i = 0; i < 10000000; ++i)
-	{
-
-	}
+	
 }

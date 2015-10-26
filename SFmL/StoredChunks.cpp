@@ -28,26 +28,30 @@ void StoredChunk::link_window(sf::RenderWindow* window)
 void StoredChunk::init(Exception* eHandler, TileManager* tileManager, sf::Texture tileset)
 {
 	m_TileManager = tileManager;
-	for (int k = 1; k < 3; k++)
+	for (int i = 0; i < 3; ++i) // i vertical
 	{
-		for (int i = 0; i < 3; ++i)
+		for (int j = 0; j < 3; ++j) //j horizontal
 		{
-			for (int j = 0; j < 3; ++j)
+			int* tileIDArray = m_Chunks[i][j].load(sf::Vector2i(0, 0), eHandler, m_TileManager); // on remplie le tableau des tile du chunk (ici aléatoire donc)
+
+			for (int tileY = 0; tileY < NUMBER_TILES_Y; ++tileY)
 			{
-				int* tileIDArray = m_Chunks[i][j].load(sf::Vector2i(0, 0), eHandler, m_TileManager); // premiere etape -> HERE IS THE PROBLEM 
-
-				for (int e = 0; e < 1900; e++)
+				for (int tileX = 0; tileX < NUMBER_TILES_X; ++tileX)
 				{
-					m_TileID[(1900 * j * i * k) + e] = tileIDArray[e];
-					std::cout << tileIDArray[e] << std::endl;
-
-					if (((1900 * j * i * k) + e) > 17100)
-						std::cout << (1900 * j * i * k) + e << std::endl;
+					m_TileID[(i * 150 * 38) + (j * 50) + tileY * 150 + tileX] = tileIDArray[tileX + tileY * 50]; // *3 not sure
+					//std::cout << ((i * 150 * 38) + (j * 50) + tileY * 150 + tileX) << std::endl;
 				}
-				m_Chunks[i][j].giveGoodSurroundingTiles(m_TileID, i, j);//et enfin, mise à jour des orientations
-				m_Chunks[i][j].setTextureToWorkWith(tileset);
-			
 			}
+		}
+	}
+
+	//loop on all the tiles to give them the good surrounding tiles and to build their texture
+	for (int i = 0; i < 3; ++i)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			m_Chunks[i][j].giveGoodSurroundingTiles(m_TileID, i, j);//et enfin, mise à jour des orientations
+			m_Chunks[i][j].setTextureToWorkWith(tileset);
 		}
 	}
 }

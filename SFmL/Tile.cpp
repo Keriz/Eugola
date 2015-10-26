@@ -3,7 +3,7 @@
 Tile::Tile(std::string name, int ID, int type, int xTextureOffset, int yTextureOffset, int frames)
 	:m_Name(name), m_ID(ID), m_Type(type), m_xTextureOffset(xTextureOffset), m_yTextureOffset(yTextureOffset)
 {
-	m_Frames = (m_Type) ? frames : 9;
+	m_Frames = (m_Type) ? frames : 15;
 	m_Orientation = 0;
 	std::cout << "Tile :" + m_Name + " with ID " + std::to_string(m_ID) + " has been registered in the tile database." << std::endl;
 }
@@ -56,51 +56,93 @@ void Tile::setOrientation(int top, int right, int bot, int left)
 		return;
 	}
 
-	else if(top == m_ID && right != m_ID && bot != m_ID && left == m_ID)
+	else if(top == m_ID && right == m_ID && bot != m_ID && left == m_ID)
 	{
 		m_Orientation = 1;
 		return;
 	}
 
-	else if(top != m_ID && right != m_ID && bot == m_ID && left == m_ID)
+	else if(top != m_ID && right == m_ID && bot == m_ID && left == m_ID)
 	{
 		m_Orientation = 2;
 		return;
 	}
 
-	else if(top == m_ID && right == m_ID && bot != m_ID && left != m_ID)
+	else if(top == m_ID && right == m_ID && bot == m_ID && left != m_ID)
 	{
 		m_Orientation = 3;
 		return;
 	}
 
-	else if(top != m_ID && right != m_ID && bot == m_ID && left == m_ID)
+	else if(top == m_ID && right != m_ID && bot == m_ID && left == m_ID)
 	{
 		m_Orientation = 4;
 		return;
 	}
 
-	else if(top != m_ID && right != m_ID && bot != m_ID && left == m_ID)
+	else if(top != m_ID && right == m_ID && bot != m_ID && left == m_ID)
 	{
 		m_Orientation = 5;
 		return;
 	}
 
-	else if(top != m_ID && right != m_ID && bot == m_ID && left != m_ID)
+	else if(top == m_ID && right != m_ID && bot == m_ID && left != m_ID)
 	{
 		m_Orientation = 6;
 		return;
 	}
 
-	else if(top != m_ID && right == m_ID && bot != m_ID && left != m_ID)
+	else if(top != m_ID && right == m_ID && bot == m_ID && left != m_ID)
 	{
 		m_Orientation = 7;
 		return;
 	}
 
-	else if(top == m_ID && right != m_ID && bot != m_ID && left != m_ID)
+	else if(top != m_ID && right != m_ID && bot == m_ID && left == m_ID)
 	{
 		m_Orientation = 8;
+		return;
+	}
+
+	else if (top == m_ID && right != m_ID && bot != m_ID && left == m_ID)
+	{
+		m_Orientation = 9;
+		return;
+	}
+
+	else if (top == m_ID && right == m_ID && bot != m_ID && left != m_ID)
+	{
+		m_Orientation = 10;
+		return;
+	}
+
+	else if (top != m_ID && right != m_ID && bot == m_ID && left != m_ID)
+	{
+		m_Orientation = 11;
+		return;
+	}
+
+	else if (top != m_ID && right != m_ID && bot != m_ID && left == m_ID)
+	{
+		m_Orientation = 12;
+		return;
+	}
+
+	else if (top == m_ID && right != m_ID && bot != m_ID && left != m_ID)
+	{
+		m_Orientation = 13;
+		return;
+	}
+
+	else if (top != m_ID && right == m_ID && bot != m_ID && left != m_ID)
+	{
+		m_Orientation = 14;
+		return;
+	}
+
+	else if (top != m_ID && right != m_ID && bot != m_ID && left != m_ID)
+	{
+		m_Orientation = 15;
 		return;
 	}
 }

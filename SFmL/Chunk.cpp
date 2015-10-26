@@ -1,4 +1,6 @@
 #include "Chunk.h"
+#include <cstdlib> //to remove
+#include <time.h> // to remove
 
 Chunk::Chunk()
 {
@@ -14,17 +16,16 @@ int* Chunk::load(sf::Vector2i chunkToLoad, Exception* eHandler, TileManager* til
 {
 	BinaryStream b;
 	b.open(std::string(std::to_string(chunkToLoad.x) + "." + std::to_string(chunkToLoad.y) + ".ec"),"r");
+	srand(std::time(0)); //to remove
 	for (int i = 0; i < NUMBER_TILES_IN_A_CHUNK; ++i)
 	{
-
-		if ((i % 2) == 0) //pour tester seulement, faut rajouter un peu d'aléatoire
+		if (rand() > 15500) //pour tester seulement, faut rajouter un peu d'aléatoire
 			m_Tiles[i] = tileManager->getTile(0);
 		else
 			m_Tiles[i] = tileManager->getTile(1);
 	}
 	
 	b.close();
-	createVertexArrayFromTiles();
 
 	for (int i = 0; i < NUMBER_TILES_IN_A_CHUNK; ++i)
 	{
@@ -39,38 +40,26 @@ void Chunk::giveGoodSurroundingTiles(int* tileIDArray,int chunkX, int chunkY)
 
 	for (int i = 0; i < NUMBER_TILES_IN_A_CHUNK; i++)
 	{
+		int tilePosition = (chunkX * 150 * 38) + (chunkY * 50) + (i % 50) + 150*(int(i/50));
+
+		if ( (float(tilePosition / 150.0) < 1.00) || ((tilePosition % 150) == 0) || ((tilePosition % 150) == 149) || (float(tilePosition / 150.0) < 13.00) ) 
+		{
+			m_Tiles[i].setOrientation(tileIDArray[0], tileIDArray[0], tileIDArray[0], tileIDArray[0]);
+			//std::cout << tilePosition << std::endl;
+			continue;
+		}
+
 		int top, left, bot, right;
 
-		if ((i - 50) < 0)
-		{
-			top = i;
-			bot = i + 50;
-			right = i + 1;
-			left = i;
-		}
+		right = tilePosition + 1;
+		bot = tilePosition + 150;
+		top = tilePosition - 150;
+		left = tilePosition - 1;
 
-		else if ((i + 50) >= 1900)
-		{
-			right = i;
-			bot = i;
-			top = i - 50;
-			left = i - 1;
-		}
-
-		else
-		{
-			top = i - 50;
-			bot = i + 50;
-			right = i + 1;
-			left = i - 1;
-		}
-
-		//if
-
-		//top = -50
-		//bot = +50
-		m_Tiles[i].setOrientation(m_Tiles[top].getID(),m_Tiles[right].getID(),m_Tiles[bot].getID(),m_Tiles[left].getID());
+		m_Tiles[i].setOrientation(tileIDArray[top], tileIDArray[right], tileIDArray[bot], tileIDArray[left]);
 	}
+
+	createVertexArrayFromTiles();
 }
 
 void Chunk::setTextureToWorkWith(sf::Texture tileset)

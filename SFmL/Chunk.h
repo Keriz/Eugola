@@ -5,7 +5,7 @@ Eugola - 2013
 
 /*
 -Chunk.h-
-Gère un chunk(50*37 tile) permettant d'acceder à des tiles spéciaux, de modifier ceux-ci. gère aussi l'accès aux fichiers.
+Gère un chunk(50*38 tile) permettant d'acceder à des tiles spéciaux, de modifier ceux-ci. gère aussi l'accès aux fichiers.
 */
 
 #ifndef CHUNK
