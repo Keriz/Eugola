@@ -1,2 +1,2 @@
-#TargetFrameworkVersion=v4.0:PlatformToolSet=v140:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit
-Static debug|Win32|H:\Programmation\Jeux\Eugola\Eugola\|
+#TargetFrameworkVersion=v4.0:PlatformToolSet=v120:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit
+Static debug|Win32|H:\Programmation\Visual Studio 2012\Projects\SFmL\|

@@ -38,7 +38,8 @@ void StoredChunk::init(Exception* eHandler, TileManager* tileManager, sf::Textur
 			{
 				for (int tileX = 0; tileX < NUMBER_TILES_X; ++tileX)
 				{
-					m_TileID[(i * 150 * 38) + (j * 50) + tileY * 150 + tileX] = tileIDArray[tileX + tileY * 50];
+					m_TileID[(i * 150 * 38) + (j * 50) + tileY * 150 + tileX] = tileIDArray[tileX + tileY * 50]; // *3 not sure
+					//std::cout << ((i * 150 * 38) + (j * 50) + tileY * 150 + tileX) << std::endl;
 				}
 			}
 		}
@@ -49,7 +50,7 @@ void StoredChunk::init(Exception* eHandler, TileManager* tileManager, sf::Textur
 	{
 		for (int j = 0; j < 3; j++)
 		{
-			m_Chunks[i][j].giveGoodSurroundingTiles(m_TileID, i, j) ;//et enfin, mise à jour des orientations
+			m_Chunks[i][j].giveGoodSurroundingTiles(m_TileID, i, j);//et enfin, mise à jour des orientations
 			m_Chunks[i][j].setTextureToWorkWith(tileset);
 		}
 	}
