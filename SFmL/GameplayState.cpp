@@ -23,13 +23,15 @@ void GameplayState::initialize(sf::RenderWindow* windowContext, TextureManager* 
 	m_TextureManager = textureManager;
 	m_EHandler = eHandler;
 	m_World.link_window(m_WindowContext);
+	m_View.link_window(m_WindowContext);
 }
 
 void GameplayState::load_content()
 {
 	//coucou = m_TextureManager->registerTexture("test", "img/PreviewSmall_1.png");
 	//coudcou.setTexture(coucou);
-
+	
+	m_View.register_cursor(m_WindowContext, m_TextureManager, m_EHandler);
 	m_World.loadContent(m_TextureManager, m_EHandler);
 }
 
@@ -37,6 +39,7 @@ void GameplayState::render(GameTime const& gameTime)
 {
 	m_WindowContext->clear();
 	m_World.draw();
+	m_View.draw();
 	//lumière
 	//shader
 //	m_WindowContext->draw(coudcou);
@@ -47,6 +50,8 @@ void GameplayState::update(GameTime const& gameTime)
 {
 	sf::Event event;
 
+	m_View.update_cursor(static_cast<sf::Vector2f>(sf::Mouse::getPosition(*m_WindowContext) ) );
+
 	while (m_WindowContext->pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
@@ -55,5 +60,4 @@ void GameplayState::update(GameTime const& gameTime)
 			}
 		}
 
-	
 }

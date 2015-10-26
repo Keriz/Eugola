@@ -62,8 +62,8 @@ void StoredChunk::draw()
 	{
 		for (int j = 0; j < 3;++j)
 		{
-				m_Window->draw(m_Chunks[i][j]); //a remettre
+				//m_Window->draw(m_Chunks[i][j]); //a remettre
 		}
 	}
-	//m_Window->draw(m_Chunks[0][0]);
+	m_Window->draw(m_Chunks[1][1]);
 }

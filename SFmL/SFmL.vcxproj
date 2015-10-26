@@ -124,6 +124,7 @@
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileManager.cpp" />
     <ClCompile Include="Tilemap.cpp" />
+    <ClCompile Include="View.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +149,7 @@
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileManager.h" />
     <ClInclude Include="Tilemap.h" />
+    <ClInclude Include="View.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

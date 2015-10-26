@@ -15,23 +15,12 @@ Fichier important	  /_____\
 #include "BaseState.h"
 #include <iostream>
 #include "World.h"
+#include "View.h"
 #pragma endregion
 
 class GameplayState : public BaseState {
 	World m_World;
-
-#pragma region Textures
-
-sf::Texture coucou;
-
-#pragma endregion
-
-#pragma region Sprites
-
-sf::Sprite coudcou;
-
-#pragma endregion
-	
+	View m_View;
 public:
 	GameplayState::GameplayState();
 	virtual GameplayState::~GameplayState();

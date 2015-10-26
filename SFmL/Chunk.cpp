@@ -19,7 +19,7 @@ int* Chunk::load(sf::Vector2i chunkToLoad, Exception* eHandler, TileManager* til
 	srand(std::time(0)); //to remove
 	for (int i = 0; i < NUMBER_TILES_IN_A_CHUNK; ++i)
 	{
-		if (rand() > 15550) //pour tester seulement, faut rajouter un peu d'aléatoire
+		if (rand() > 7000) //pour tester seulement, faut rajouter un peu d'aléatoire
 			m_Tiles[i] = tileManager->getTile(0);
 		else
 			m_Tiles[i] = tileManager->getTile(1);
@@ -42,10 +42,11 @@ void Chunk::giveGoodSurroundingTiles(int* tileIDArray,int chunkX, int chunkY)
 	{
 		int tilePosition = (chunkX * 150 * 38) + (chunkY * 50) + (i % 50) + 150*(int(i/50));
 
-		if ( (float(tilePosition / 150.0) < 1.00) || ((tilePosition % 150) == 0) || ((tilePosition % 150) == 149) || (float(tilePosition / 150.0) < 13.00) ) 
+		if ( (float(tilePosition / 150.0) < 1.00) || ((tilePosition % 150) == 0) || ((tilePosition % 150) == 149) || (float(tilePosition / 150.0) > 113.00) ) 
 		{
 			m_Tiles[i].setOrientation(tileIDArray[0], tileIDArray[0], tileIDArray[0], tileIDArray[0]);
-			//std::cout << tilePosition << std::endl;
+			if (tilePosition > 150)
+				std::cout << tilePosition << std::endl;
 			continue;
 		}
 
