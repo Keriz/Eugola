@@ -52,6 +52,7 @@ void StoredChunk::init(Exception* eHandler, TileManager* tileManager, sf::Textur
 		{
 			m_Chunks[i][j].giveGoodSurroundingTiles(m_TileID, i, j);//et enfin, mise à jour des orientations
 			m_Chunks[i][j].setTextureToWorkWith(tileset);
+			m_Chunks[i][j].setPosition(j*TILE_SIZE*NUMBER_TILES_X, i * TILE_SIZE * NUMBER_TILES_Y);
 		}
 	}
 }
@@ -62,8 +63,7 @@ void StoredChunk::draw()
 	{
 		for (int j = 0; j < 3;++j)
 		{
-				//m_Window->draw(m_Chunks[i][j]); //a remettre
+				m_Window->draw(m_Chunks[i][j]); //a remettre
 		}
 	}
-	m_Window->draw(m_Chunks[1][1]);
 }

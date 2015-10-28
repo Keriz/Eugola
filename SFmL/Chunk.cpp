@@ -45,8 +45,6 @@ void Chunk::giveGoodSurroundingTiles(int* tileIDArray,int chunkX, int chunkY)
 		if ( (float(tilePosition / 150.0) < 1.00) || ((tilePosition % 150) == 0) || ((tilePosition % 150) == 149) || (float(tilePosition / 150.0) > 113.00) ) 
 		{
 			m_Tiles[i].setOrientation(tileIDArray[0], tileIDArray[0], tileIDArray[0], tileIDArray[0]);
-			if (tilePosition > 150)
-				std::cout << tilePosition << std::endl;
 			continue;
 		}
 

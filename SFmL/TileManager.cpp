@@ -16,7 +16,7 @@ void TileManager::load_tiles(TextureManager* textureManager, Exception* eHandler
 
 	if(!tilesetDoc.load_file("data/tileset.xml"))
 	{
-		eHandler->write(2, "Tileset.xml couldn't be loaded. Exit.");
+		eHandler->write(error::invalid_argument, PRINT_LOCATION, "Tileset.xml couldn't be loaded.");
 		return;
 	}
 

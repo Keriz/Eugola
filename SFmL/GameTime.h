@@ -16,12 +16,14 @@ Classe de gestion du temps, accesible partout.
 #pragma endregion
 
 class GameTime : public sf::Clock {
-		sf::Time m_ElapsedTime;
-		sf::Clock *m_Clock;
+		//sf::Clock *m_Clock;
+	double m_DesiredTime;
 public:
 	GameTime::GameTime();
-	GameTime::~GameTime();
-	sf::Time getElapsedTime();
+	virtual GameTime::~GameTime();
+	virtual sf::Time restart();
+	virtual sf::Time getElapsedTime() const;
+	double getDesiredTime() const;
 };
 
 #endif

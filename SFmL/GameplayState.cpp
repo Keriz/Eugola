@@ -30,9 +30,10 @@ void GameplayState::load_content()
 {
 	//coucou = m_TextureManager->registerTexture("test", "img/PreviewSmall_1.png");
 	//coudcou.setTexture(coucou);
-	
+
 	m_View.register_cursor(m_WindowContext, m_TextureManager, m_EHandler);
 	m_World.loadContent(m_TextureManager, m_EHandler);
+
 }
 
 void GameplayState::render(GameTime const& gameTime)
@@ -59,5 +60,23 @@ void GameplayState::update(GameTime const& gameTime)
 				m_WindowContext->close();
 			}
 		}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+		m_View.move(sf::Keyboard::Up, gameTime.getElapsedTime());
+	}
+
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+		m_View.move(sf::Keyboard::Down, gameTime.getElapsedTime());
+	}
+
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+		m_View.move(sf::Keyboard::Right, gameTime.getElapsedTime());
+	}
+
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+		m_View.move(sf::Keyboard::Left, gameTime.getElapsedTime());
+	}
+
+	m_View.update_position();
 
 }

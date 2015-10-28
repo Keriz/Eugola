@@ -32,10 +32,10 @@ sf::Texture TextureManager::registerTexture(std::string textureName, std::string
 	{
 		if (textureName == "tileset")
 		{
-			m_EHandler->write(4, const_cast<char*>(std::string("Tileset failed to load. We must exit (WRONGPATH_CODE).").c_str()));
+			m_EHandler->write(error::invalid_argument, PRINT_LOCATION, std::string("Tileset failed to load at p. We must exit (WRONGPATH_CODE)."));
 		}
 
-		m_EHandler->write(1,const_cast<char*>(std::string("Could not load " + texturePath + ".").c_str()));
+		m_EHandler->write(error::runtime_error, PRINT_LOCATION, std::string("Could not load " + texturePath + "."));
 		return getTexture("NULL");
 	}
 	sf::Texture texture;

@@ -36,13 +36,15 @@ Gère un chunk(50*38 tile) permettant d'acceder à des tiles spéciaux, de modifier
 #include "TileManager.h"
 #pragma endregion
 
-class Chunk: public sf::Drawable {
+class Chunk: public sf::Drawable, public sf::Transformable {
 	Tile* m_Tiles; 
 	int m_TilesID[NUMBER_TILES_IN_A_CHUNK];
 	sf::VertexArray m_Vertices;
 	sf::Texture m_Tileset;
 	virtual void draw(sf::RenderTarget& target,sf::RenderStates states) const
 	{
+		states.transform *= getTransform();
+
         states.texture = &m_Tileset;
 
         target.draw(m_Vertices, states);	

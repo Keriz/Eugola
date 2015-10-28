@@ -26,14 +26,14 @@ class Engine {
 	Exception m_EHandler;
 	GameTime m_GameTime;
 	StateManager m_StateManager;
-	std::string m_ExitMessage;
 public:
 	Engine::Engine();
 	Engine::~Engine();
-	void Engine::run();
-	void Engine::setLastExceptionCode(const int exceptionCode){m_LastExceptionCode = exceptionCode; };
-	void exit_now(int exceptionLevel,char* exceptionMessage);
-	int const Engine::getLastExceptionCode(){return m_LastExceptionCode;};
-	std::string getExitMessage(){return m_ExitMessage;};
+	void run();
+	void init();
+	void setLastExceptionCode(const int exceptionCode){m_LastExceptionCode = exceptionCode; };
+	void exit_now();
+	int const getLastExceptionCode(){return m_LastExceptionCode;};
+	void write_error(const char*, const char*);
 };
 #endif
